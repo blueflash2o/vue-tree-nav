@@ -1,7 +1,7 @@
 <script type="text/babel">
   import icon from 'vue-awesome'
 
-  module.exports = {
+  export default {
     components: {
       'icon': icon
     },
@@ -57,6 +57,9 @@
         hover: false
       }
     },
+    computed: {
+      routerlink() { return typeof this.href === 'string'},
+    },
     methods: {
       run: function () {
         if (typeof this.href === 'function') {
@@ -98,9 +101,11 @@
       @mouseleave="hover = false"
       :href="url()"
       :style="aStyle()"
+      v-if="!routerlink"
     >
       <icon v-if="icon" :scale="0.9 * scale" :name="icon"/> {{label}}
     </a>
+    <router-link :to="url()" v-if="routerlink">{{label}}</router-link>
     <ul v-if="open" :style="ulStyle()">
       <item
         v-for="child in children"
