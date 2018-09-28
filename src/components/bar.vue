@@ -184,6 +184,7 @@
         :hoverColor="hoverColor"
         :activeColor="activeColor"
       />
+      <slot name="right"></slot>
     </ul>
     <vue-over-body
       :open="sideBar"
